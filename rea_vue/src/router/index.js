@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import Listings from "../views/Listings.vue";
 import Country from "../views/Country.vue";
 import Search from "../views/Search.vue";
+import Cart from "../views/Cart.vue";
 
 const routes = [
   {
@@ -24,6 +25,12 @@ const routes = [
     path: "/search",
     name: "Search",
     component: Search,
+  },
+
+  {
+    path: "/cart",
+    name: "Cart",
+    component: Cart,
   },
 
   {
