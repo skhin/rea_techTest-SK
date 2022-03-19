@@ -5,27 +5,11 @@
         <h2 class="is-size-2 has-text-centered">{{ country.name }}</h2>
       </div>
 
-      <div
-        class="column-is-3"
+      <ListingsBox
         v-for="listings in country.listings"
         v-bind:key="listings.id"
-      >
-        <div class="box">
-          <figure class="image mb-4">
-            <img v-bind:src="listings.get_thumbnail" />
-          </figure>
-
-          <h3 class="is-size-4">{{ listings.name }}</h3>
-          <p class="is-size-6 has-text-grey">${{ listings.price }}</p>
-
-          <router-link
-            v-bind:to="listings.get_absolute_url"
-            class="button is-dark mt-4"
-          >
-            View Details</router-link
-          >
-        </div>
-      </div>
+        v-bind:listings="listings"
+      />
     </div>
   </div>
 </template>
@@ -33,8 +17,13 @@
 <script>
 import axios from "axios";
 import { toast } from "bulma-toast";
+import ListingsBox from "../components/ListingsBox.vue";
+
 export default {
   name: "Country",
+  components: {
+    ListingsBox,
+  },
   data() {
     return {
       country: {
@@ -44,6 +33,13 @@ export default {
   },
   mounted() {
     this.getCountry();
+  },
+  watch: {
+    $route(to, from) {
+      if (to.name === "Country") {
+        this.getCountry();
+      }
+    },
   },
   methods: {
     async getCountry() {

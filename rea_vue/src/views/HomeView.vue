@@ -13,34 +13,19 @@
       <div class="column is-12">
         <h2 class="is-size-2 has-text-centered">LATEST LISTINGS</h2>
       </div>
-    </div>
 
-    <div
-      class="column-is-3"
-      v-for="listings in latestListings"
-      v-bind:key="listings.id"
-    >
-      <div class="box">
-        <figure class="image mb-4">
-          <img v-bind:src="listings.get_thumbnail" />
-        </figure>
-
-        <h3 class="is-size-4">{{ listings.name }}</h3>
-        <p class="is-size-6 has-text-grey">${{ listings.price }}</p>
-
-        <router-link
-          v-bind:to="listings.get_absolute_url"
-          class="button is-dark mt-4"
-        >
-          View Details</router-link
-        >
-      </div>
+      <ListingsBox
+        v-for="listings in latestListings"
+        v-bind:key="listings.id"
+        v-bind:listings="listings"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import ListingsBox from "../components/ListingsBox.vue";
 
 export default {
   name: "HomeView",
@@ -49,7 +34,9 @@ export default {
       latestListings: [],
     };
   },
-  components: {},
+  components: {
+    ListingsBox,
+  },
 
   mounted() {
     this.getLatestListings();
@@ -73,12 +60,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.image {
-  margin-top: -1.25rem;
-  margin-left: -1.25rem;
-  margin-right: -1.25rem;
-  width: 300px;
-}
-</style>
