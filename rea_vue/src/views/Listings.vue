@@ -14,20 +14,13 @@
         <p><strong>Price: </strong>${{ listings.price }}</p>
 
         <div class="field has-addons mt-6">
+          Schedule a Visit/Call with Agent
+          <br />
           <div class="control">
             <input type="number" min="1" class="input" v-model="quantity" />
           </div>
           <div class="control">
-            Schedule a Call with Agent
-            <a class="button is-dark">Agent Call</a>
-          </div>
-
-          <div class="control">
-            <input type="number" min="1" class="input" v-model="quantity" />
-          </div>
-          <div class="control">
-            Schedule a Visit with Agent
-            <a class="button is-dark">Agent Visit</a>
+            <a class="button is-dark" @click="addToCart">Agent Call</a>
           </div>
         </div>
       </div>
@@ -37,6 +30,8 @@
 
 <script>
 import axios from "axios";
+import { toast } from "bulma-toast";
+
 export default {
   name: "Listings",
   data() {
@@ -50,18 +45,43 @@ export default {
     this.getListings();
   },
   methods: {
-    getListings() {
+    async getListings() {
+      this.$store.commit("setIsLoading", true);
+
       const country_slug = this.$route.params.country_slug;
       const listings_slug = this.$route.params.listings_slug;
 
-      axios
+      await axios
         .get(`/api/v1/listings/${country_slug}/${listings_slug}`)
         .then((response) => {
           this.listings = response.data;
+
+          document.title = this.listings.name + " | REA";
         })
         .catch((error) => {
           console.log(error);
         });
+      this.$store.commit("setIsLoading", false);
+    },
+    addToCart() {
+      if (isNaN(this.quantity) || this.quantity < 1) {
+        this.quantity = 1;
+      }
+
+      const item = {
+        listings: this.listings,
+        quantity: this.quantity,
+      };
+      this.$store.commit("addToCart", item);
+
+      toast({
+        message: "Your schedule with the agent has been added for this listing",
+        type: "is-success",
+        dismissible: true,
+        pauseOnHover: true,
+        duration: 2000,
+        position: "bottom-right",
+      });
     },
   },
 };

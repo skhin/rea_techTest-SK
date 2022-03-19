@@ -53,10 +53,14 @@ export default {
 
   mounted() {
     this.getLatestListings();
+
+    document.title = "Home | REA";
   },
   methods: {
-    getLatestListings() {
-      axios
+    async getLatestListings() {
+      this.$store.commit("setIsLoading", true);
+
+      await axios
         .get("/api/v1/latest-listings/")
         .then((response) => {
           this.latestListings = response.data;
@@ -64,6 +68,7 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+      this.$store.commit("setIsLoading", false);
     },
   },
 };

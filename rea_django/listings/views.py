@@ -2,8 +2,8 @@ from django.http import Http404
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import ListingsSerializer
-from .models import Listings
+from .serializers import ListingsSerializer, CountrySerializer
+from .models import Country, Listings
 
 class LatestListingsList(APIView):
     def get(self, request, format=None):
@@ -24,3 +24,14 @@ class ListingsDetail(APIView):
         return Response(serializer.data)
 
 
+class CountryDetail(APIView):
+     def get_listings(self, country_slug):
+        try:
+            return Country.objects.get(slug=country_slug)
+        except Listings.DoesNotExist:
+            raise Http404
+    
+     def get(self, request, country_slug, format=None):
+        country = self.get_listings(country_slug)
+        serializer = CountrySerializer(country)
+        return Response(serializer.data)
