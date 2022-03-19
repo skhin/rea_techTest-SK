@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import Listings from "../views/Listings.vue";
+import Country from "../views/Country.vue";
 
 const routes = [
   {
@@ -19,9 +20,15 @@ const routes = [
   },
 
   {
-    path: "/:country_slug/:listings_slug/",
+    path: "/:country_slug/:listings_slug",
     name: "Listings",
     component: Listings,
+  },
+
+  {
+    path: "/:country_slug",
+    name: "Country",
+    component: Country,
   },
 ];
 
