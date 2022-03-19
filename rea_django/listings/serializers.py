@@ -13,3 +13,15 @@ class ListingsSerializer(serializers.ModelSerializer):
            "get_image",
            "get_thumbnail" 
         )
+
+class CountrySerializer(serializers.ModelSerializer):
+    listings = ListingsSerializer(many=True)
+
+    class Meta:
+        model = Country
+        fields = (
+            "id",
+            "name",
+            "get_absolute_url",
+            "listings"
+        )
