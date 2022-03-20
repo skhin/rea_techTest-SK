@@ -151,7 +151,9 @@ export default {
   computed: {
     cartTotalPrice() {
       return this.cart.items.reduce((acc, currentValue) => {
-        return (acc += currentValue.listings.price * currentValue.quantity);
+        return (
+          (acc += currentValue.listings.price * currentValue.quantity) * 1.07
+        );
       }, 0);
     },
     cartTotalLength() {

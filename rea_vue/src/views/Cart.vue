@@ -82,7 +82,7 @@ export default {
     cartTotalPrice() {
       return this.cart.items.reduce((acc, currentValue) => {
         return (acc +=
-          currentValue.listings.price * currentValue.quantity * 0.07);
+          currentValue.listings.price * currentValue.quantity * 1.07);
       }, 0);
     },
   },
