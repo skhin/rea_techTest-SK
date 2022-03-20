@@ -13,7 +13,7 @@
     <td>${{ item.listings.price }}</td>
     <td class="has-text-centered">
       {{ item.quantity }}
-      <a @click="reduceQty(item)">-</a>
+      <a @click="reduceQty(item)">-</a> |
       <a @click="increaseQty(item)">+</a>
     </td>
     <td class="has-text-centered">7%</td>

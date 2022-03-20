@@ -66,6 +66,13 @@ export default {
   mounted() {
     this.cart = this.$store.state.cart;
   },
+  methods: {
+    removeFromCart(item) {
+      this.cart.items = this.cart.items.filter(
+        (i) => i.listings.id !== item.listings.id
+      );
+    },
+  },
   computed: {
     cartTotalLength() {
       return this.cart.items.reduce((acc, currentValue) => {
