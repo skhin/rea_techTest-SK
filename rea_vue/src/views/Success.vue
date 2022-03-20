@@ -9,6 +9,9 @@
           days
         </p>
       </div>
+      <router-link to="/" class="button is-dark">
+        <button class="button is-dark">Back to Home Page</button>
+      </router-link>
     </div>
   </div>
 </template>
