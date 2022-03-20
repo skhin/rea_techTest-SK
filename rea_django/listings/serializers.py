@@ -10,6 +10,7 @@ class ListingsSerializer(serializers.ModelSerializer):
            "get_absolute_url",
            "description",
            "price",
+        #    "percentage",
            "get_image",
            "get_thumbnail" 
         )

@@ -1,9 +1,9 @@
 <template>
   <div id="wrapper">
-    <nav class="navbar is-dark">
+    <nav class="navbar is-warning">
       <div class="navbar-logo">
         <router-link to="/" class="navbar-items">
-          <strong>REAL ESTATE ANALYTICS</strong>
+          <strong><img src="./assets/logo.svg" /></strong>
         </router-link>
 
         <a
@@ -137,6 +137,14 @@ export default {
 
 <style lang="scss">
 @import "../node_modules/bulma";
+
+img {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 10px;
+  width: 200px;
+  background: transparent;
+}
 
 .lds-dual-ring {
   display: inline-block;
