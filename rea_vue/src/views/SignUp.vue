@@ -32,7 +32,7 @@
 
           <div class="field">
             <div class="control">
-              <button class="button is-dark">Sign up</button>
+              <button class="button is-dark">Sign Up</button>
             </div>
           </div>
 
@@ -75,7 +75,7 @@ export default {
       }
 
       if (this.password !== this.password2) {
-        this.errors.push("The passwords does not match. Please try again.");
+        this.errors.push("The passwords doesn't match");
       }
 
       if (!this.errors.length) {

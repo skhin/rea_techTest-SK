@@ -27,7 +27,7 @@ export default createStore({
     },
     addToCart(state, item) {
       const exists = state.cart.items.filter(
-        (i) => i.product.id === item.product.id
+        (i) => i.listings.id === item.listings.id
       );
       if (exists.length) {
         exists[0].quantity =
