@@ -1,5 +1,5 @@
 <template>
-  <div class="column is-3">
+  <div class="column is-4">
     <div class="box">
       <figure class="image mb-4">
         <img v-bind:src="listings.get_thumbnail" />
